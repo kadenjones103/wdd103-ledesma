@@ -1,11 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledesma New Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fractals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    Ledesma new website
+
+  <canvas id="julia-bg" aria-hidden="true"></canvas>
+
+  <header class="hero">
+    <h1 class="title">FRACTALS<span class="colon">:</span></h1>
+    <p class="hero-note">a shape that looks the same no matter how far you zoom in</p>
+  </header>
+
+  <main class="board">
+
+    <section class="card card--what" data-tilt="-1">
+      <h2>What are fractals</h2>
+      <p>
+        Fractals are infinitely detailed shapes, usually built from a seemingly
+        simple equation repeated over and over on its own output. The swirling
+        pattern behind this page is a Julia set &mdash; it comes from one single
+        number, endlessly added to itself and multiplied by itself.
+      </p>
+      <p>
+        Zoom into any edge of a fractal and you'll find the same kind of
+        detail you started with, forever. No matter the magnification, the
+        shape never resolves into something simple. That property is called
+        <em>self-similarity</em>, and it's the signature of every fractal, from
+        snowflakes to river deltas to the branching of your own lungs.
+      </p>
+    </section>
+
+    <section class="card card--world" data-tilt="1">
+      <h2>Fractals in the real world</h2>
+      <p>
+        Fractals are more than an abstract concept &mdash; they show up in
+        everyday life. One major application is that we do not have an
+        accurate measurement of any coastline. As the portion of coastline
+        measured becomes smaller, it becomes more detailed, leading the
+        coastline's measured length to grow toward infinity. This is known
+        as the <em>coastline paradox</em>.
+      </p>
+    </section>
+
+    <section class="card card--uses" data-tilt="-1">
+      <h2>Uses of fractals</h2>
+      <p>
+        Fractals are also more than just a cool phenomenon &mdash; they have
+        real-world uses that make them worth learning about, mostly in
+        things that require a large surface area packed into a small amount
+        of material. Antenna design is a great example: a fractal antenna
+        can receive far more frequencies than a simple rod of the same size.
+        Fractal math also shows up in image compression, search algorithms,
+        and computer graphics used to generate natural-looking terrain.
+      </p>
+    </section>
+
+    <section class="card card--explorer" data-tilt="1">
+      <h2>Fractal explorer</h2>
+      <p class="explorer-hint">click the fractal to zoom in on that point</p>
+
+      <div class="explorer-frame">
+        <canvas id="explorer" width="420" height="420"></canvas>
+        <button id="explorer-play" class="play-btn" type="button" aria-label="Start the fractal explorer">
+          <span class="play-icon">&#9654;</span>
+        </button>
+      </div>
+      <button id="explorer-reset" class="reset-link" type="button" hidden>reset zoom</button>
+
+      <div class="also">
+        <h3>Also:</h3>
+        <button id="cake-toggle" class="cake-link" type="button" aria-expanded="false">
+          how to make a menger sponge cake
+        </button>
+        <p id="cake-answer" class="cake-answer" hidden>
+          Stack brownies into a 3&times;3&times;3 cube. Cut out the center cube
+          and the center cube of every face. Repeat that same cut on each of
+          the 20 cubes left behind. Keep going as long as your patience (and
+          your cake) holds out &mdash; the more iterations, the more it looks
+          like a real Menger sponge, and the less of it you'll actually get
+          to eat.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-col">
+      <p class="footer-label">Font</p>
+      <p class="footer-value">any monospace<br>much like this one</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-label">Colors</p>
+      <div class="palette">
+        <span class="swatch-row">
+          <span class="swatch-name">mandelbrot</span>
+          <span class="swatch" style="background:var(--mandel-orange)"></span>
+          <span class="swatch" style="background:var(--mandel-dark)"></span>
+          <span class="swatch" style="background:var(--mandel-blue)"></span>
+        </span>
+        <span class="swatch-row">
+          <span class="swatch-name">julia</span>
+          <span class="swatch" style="background:var(--julia-pink)"></span>
+          <span class="swatch" style="background:var(--julia-magenta)"></span>
+          <span class="swatch" style="background:var(--julia-green)"></span>
+          <span class="swatch" style="background:var(--julia-teal)"></span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+<script src="script.js"></script>
 </body>
 </html>
