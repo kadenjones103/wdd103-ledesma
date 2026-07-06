@@ -1,5 +1,3 @@
-// ---------- shared color helpers ----------
-
 function lerp(a, b, t) { return a + (b - a) * t; }
 
 function mixStops(stops, t) {
@@ -30,10 +28,9 @@ const MANDEL_STOPS = [
   [12, 12, 12],
 ];
 
-// ---------- julia set ambient background ----------
-
 function renderJulia() {
   const canvas = document.getElementById('julia-bg');
+  if (!canvas) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const w = Math.floor(window.innerWidth * dpr * 0.5);
   const h = Math.floor(window.innerHeight * dpr * 0.5);
@@ -91,7 +88,7 @@ window.addEventListener('resize', () => {
 // ---------- mandelbrot explorer ----------
 
 const explorerCanvas = document.getElementById('explorer');
-const explorerCtx = explorerCanvas.getContext('2d');
+const explorerCtx = explorerCanvas ? explorerCanvas.getContext('2d') : null;
 const playBtn = document.getElementById('explorer-play');
 const resetBtn = document.getElementById('explorer-reset');
 
@@ -144,8 +141,11 @@ function startExplorer() {
   renderMandelbrot();
 }
 
-playBtn.addEventListener('click', startExplorer);
+if (playBtn && explorerCanvas) {
+  playBtn.addEventListener('click', startExplorer);
+}
 
+if (explorerCanvas) {
 explorerCanvas.addEventListener('click', (e) => {
   if (!explorerStarted) return;
 
@@ -161,7 +161,9 @@ explorerCanvas.addEventListener('click', (e) => {
   resetBtn.hidden = false;
   renderMandelbrot();
 });
+}
 
+if (resetBtn && explorerCanvas) {
 resetBtn.addEventListener('click', () => {
   view.cx = -0.5;
   view.cy = 0;
@@ -169,14 +171,4 @@ resetBtn.addEventListener('click', () => {
   resetBtn.hidden = true;
   renderMandelbrot();
 });
-
-// ---------- menger sponge cake easter egg ----------
-
-const cakeToggle = document.getElementById('cake-toggle');
-const cakeAnswer = document.getElementById('cake-answer');
-
-cakeToggle.addEventListener('click', () => {
-  const expanded = cakeToggle.getAttribute('aria-expanded') === 'true';
-  cakeToggle.setAttribute('aria-expanded', String(!expanded));
-  cakeAnswer.hidden = expanded;
-});
+}
